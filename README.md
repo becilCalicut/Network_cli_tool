@@ -84,7 +84,7 @@ Each switch produces a `.txt` file named after its IP address
 | Switch OEM               | Select the vendor (Cisco / Aruba / Ruckus / Alcatel)    |
 | User Name                | SSH login username for the switches                     |
 | Password                 | SSH login password                                      |
-| Switch IP Directory      | Browse to a `.txt` file listing switch IPs              |
+| Switch IP File           | Browse to a `.txt` file listing switch IPs              |
 | Backup Storing Directory | Browse to a folder where output files will be saved     |
 
 ---
