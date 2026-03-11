@@ -68,7 +68,7 @@ def ssh_run_commands(ip: str, username: str, password: str,
     """
     Connect to *ip* via SSH, run each command.
     Returns (success, output, debug_lines).
-    debug_lines is always populated; caller decides whether to show it.
+    debug_lines is always populated; user can decides whether to show it.
     """
     output_lines = []
     debug_lines  = []
@@ -211,7 +211,7 @@ def ssh_run_commands(ip: str, username: str, password: str,
 
 
 # ─────────────────────────────────────────────
-#  Main Application
+#  Main Application GUI
 # ─────────────────────────────────────────────
 class BKPApp(tk.Tk):
     def __init__(self):
@@ -237,7 +237,7 @@ class BKPApp(tk.Tk):
     # ─── UI Construction ───────────────────────
     def _build_ui(self):
         # Outer padding frame
-        root_frame = tk.Frame(self, bg="#1a1d2e", padx=14, pady=14)
+        root_frame = tk.Frame(self, bg="#2b3ca0", padx=14, pady=14)
         root_frame.pack(fill="both", expand=True)
 
         # ── Title bar
@@ -251,10 +251,10 @@ class BKPApp(tk.Tk):
         main.pack(fill="both", expand=True)
 
         # ── LEFT  – Status screen
-        left = tk.Frame(main, bg="#12152a", bd=2, relief="groove")
+        left = tk.Frame(main, bg="#e8eef2", bd=2, relief="groove")
         left.pack(side="left", fill="both", expand=True, padx=(0, 10))
 
-        tk.Label(left, text="Status Screen", bg="#12152a", fg="#5a6a8a",
+        tk.Label(left, text="Status Screen", bg="#E6E8F6", fg="#5a6a8a",
                  font=("Courier New", 9)).pack(anchor="nw", padx=6, pady=3)
 
         self.status_box = scrolledtext.ScrolledText(
@@ -269,7 +269,7 @@ class BKPApp(tk.Tk):
         self.status_box.tag_config("warn",    foreground="#ffcc00")
         self.status_box.tag_config("info",    foreground="#5bc8f5")
         self.status_box.tag_config("header",  foreground="#ffffff", font=("Courier New", 9, "bold"))
-        self.status_box.tag_config("debug",   foreground="#b388ff", font=("Courier New", 8))
+        self.status_box.tag_config("debug",   foreground="#4868CA", font=("Courier New", 8))
 
         # ── RIGHT – Controls panel
         right = tk.Frame(main, bg="#1a1d2e", width=300)
@@ -377,7 +377,7 @@ class BKPApp(tk.Tk):
         self.stop_btn = tk.Button(
             parent, text="■  STOP",
             command=self._stop_backup,
-            bg="#c0392b", fg="#ffffff", activebackground="#a93226",
+            bg="#e84c34", fg="#ffffff", activebackground="#e84c34",
             font=("Courier New", 10, "bold"), relief="flat",
             padx=10, pady=8, cursor="hand2", state="disabled")
         self.stop_btn.pack(fill="x")
