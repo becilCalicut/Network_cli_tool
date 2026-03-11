@@ -1,0 +1,6 @@
+# Alcatel-Lucent OmniSwitch commands
+show system
+show running-config
+show interfaces
+show ip route
+show lldp neighbors detail

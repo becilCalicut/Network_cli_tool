@@ -1,0 +1,21 @@
+# Ruckus ICX commands
+skip-page-display
+show version
+show module
+show stack
+show media
+show lag
+show running-config
+show interfaces brief
+show lldp neighbors
+show poe detail
+show flash
+show boot-preference
+show boot-monitor
+show chassis unit-id 1
+show chassis unit-id 2
+show chassis unit-id 3
+show logging
+show 802-1w
+show spa
+show memory

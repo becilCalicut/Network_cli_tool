@@ -1,0 +1,3 @@
+# Switch IP List – one IP per line
+# Lines starting with # are ignored
+10.164.10.11

@@ -1,0 +1,25 @@
+# Cisco IOS / IOS-XE commands
+# One command per line. Lines starting with # are ignored.
+terminal length 0
+show running-config
+show version
+show module
+show cdp neighbors
+show lldp neighbors
+show lldp neighbors detail
+show inventory
+show ip int br
+show power inline
+show switch detail
+show int trunk
+show vlan
+show ip int bri
+show env all
+show env stack
+show env status
+show interfaces transceiver
+show etherchannel summary
+show stackwise-virtual
+show switch
+show logging
+show spanning

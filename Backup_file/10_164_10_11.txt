@@ -1,0 +1,1109 @@
+# IP      : 10.164.10.11
+# OEM     : Aruba
+# Date    : 2026-03-11 11:27:24
+# User    : admin
+────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────
+# terminal length 1000
+────────────────────────────────────────────────────────────
+Your previous successful login (as manager) was on 2026-03-11 07:01:38
+ from 10.164.10.1
+ILANZ_LAB_CORE# erminal length 1000EInvalid input: erminal
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show system
+────────────────────────────────────────────────────────────
+show systemE
+ Status and Counters - General System Information
+
+  System Name        : ILANZ_LAB_CORE
+  System Contact     :
+  System Location    :
+
+  Allow V1 Modules   : Yes
+
+  MAC Age Time (sec) : 300
+
+  Time Zone          : 0
+  Daylight Time Rule : None
+
+  Software revision  : K.15.18.0021         Base MAC Addr      : b439d6-faae00
+  ROM Version        : K.15.30              Serial Number      : SG00DXXGCC
+                                            Opacity Shields    : Not Installed
+
+  Up Time            : 25 days              Memory   - Total   : 121,126,912
+  CPU Util (%)       : 0                               Free    : 48,558,392
+
+  IP Mgmt  - Pkts Rx : 192,531              Packet   - Total   : 6750
+             Pkts Tx : 98,827               Buffers    Free    : 5086
+                                                       Lowest  : 5058
+                                                       Missed  : 0
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show running-config
+────────────────────────────────────────────────────────────
+show running-configE
+Running configuration:
+
+; J9091A Configuration Editor; Created on release #K.15.18.0021
+; Ver #0f:01.80.10.00.34.00.24.6b.ff.f7.fc.7f.ff.3f.ef:41
+hostname "ILANZ_LAB_CORE"
+module 1 type j8706a
+module 2 type j8706a
+module 3 type j8706a
+module 4 type j8702a
+module 5 type j9154a
+module 7 type j9154a
+ip default-gateway 10.164.10.1
+interface D1
+   name "Connected-to-Firewall"
+   exit
+interface D24
+   name "Connected_Alcatel"
+   exit
+interface G1
+   rate-limit all in kbps 100
+   exit
+interface G2
+   rate-limit all in kbps 100
+   exit
+snmp-server community "public" operator unrestricted
+snmpv3 enable
+snmpv3 restricted-access
+snmpv3 group managerpriv user "test" sec-model ver3
+snmpv3 group managerpriv user "admin" sec-model ver3
+snmpv3 group managerpriv user "snmpuser" sec-model ver3
+snmpv3 notify "traphost" tagvalue "TrapHost"
+snmpv3 targetaddress "traphost.test.10.163.30.10" params "traphost.test.10.163.30.10" 10.163.30.10 taglist "TrapHost"
+snmpv3 params "traphost.test.10.163.30.10" user "test" sec-model ver3 message-processing ver3 priv
+snmpv3 user "admin"
+snmpv3 user "snmptest"
+snmpv3 user "test"
+vlan 1
+   name "DEFAULT_VLAN"
+   no untagged D1-D2,D7-D9,D11-D13,D24,E1-E2
+   untagged A1-A24,B1-B24,C1-C24,D3-D6,D10,D14-D23
+   no ip address
+   exit
+vlan 110
+   name "ajman_saray_test"
+   ip address 10.10.50.1 255.255.255.0
+   exit
+vlan 120
+   name "ajman_saray_gw"
+   ip address 10.10.100.1 255.255.255.0
+   exit
+vlan 140
+   name "Ayla"
+   untagged D7-D9
+   tagged D1,D24
+   no ip address
+   exit
+vlan 169
+   name "KIDXB_WVOICE"
+   untagged D13
+   tagged D1,D24
+   no ip address
+   exit
+vlan 410
+   name "MGMT"
+   untagged D1-D2,D11,D24,E1-E2
+   ip address 10.164.10.11 255.255.255.0
+   exit
+vlan 420
+   name "Staff"
+   tagged D1,D24
+   no ip address
+   exit
+vlan 430
+   name "Guest"
+   untagged D12
+   tagged D1,D24
+   no ip address
+   exit
+spanning-tree
+no spanning-tree bpdu-throttle
+no tftp server
+no autorun
+no dhcp config-file-update
+no dhcp image-file-update
+dhcp-server pool "WVOICE"
+   default-router "192.168.20.1"
+   network 192.168.20.0 255.255.255.0
+   range 192.168.20.100 192.168.20.150
+   exit
+password manager
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show system information
+────────────────────────────────────────────────────────────
+show system informationE
+ Status and Counters - General System Information
+
+  System Name        : ILANZ_LAB_CORE
+  System Contact     :
+  System Location    :
+
+  Allow V1 Modules   : Yes
+
+  MAC Age Time (sec) : 300
+
+  Time Zone          : 0
+  Daylight Time Rule : None
+
+  Software revision  : K.15.18.0021         Base MAC Addr      : b439d6-faae00
+  ROM Version        : K.15.30              Serial Number      : SG00DXXGCC
+                                            Opacity Shields    : Not Installed
+
+  Up Time            : 25 days              Memory   - Total   : 121,126,912
+  CPU Util (%)       : 0                               Free    : 48,555,048
+
+  IP Mgmt  - Pkts Rx : 192,541              Packet   - Total   : 6750
+             Pkts Tx : 98,834               Buffers    Free    : 5086
+                                                       Lowest  : 5058
+                                                       Missed  : 0
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show modules
+────────────────────────────────────────────────────────────
+show modulesE
+ Status and Counters - Module Information
+
+  Chassis: 8212zl J9091A         Serial Number:   SG00DXXGCC
+                              Allow V1 Modules:   Yes
+
+                                                                      Core  Mod
+  Slot Module Description                     Serial Number  Status   Dump  Ver
+  ---- -------------------------------------- -------------- -------- ----- ---
+  MM1  HP J9092A Management Module 8200zl     SG033BP00H     Active   YES   1
+
+  SSM  HP J9095A System Support Module        SG038BZ036
+
+  FM1  HP J9093A Fabric Module 8200zl         SG040BQ05G     Enabled  -     1
+  FM2  HP J9093A Fabric Module 8200zl         SG040BQ043     Enabled  -     1
+
+  A    HP J8706A 24p SFP zl Module            SG117BD05C     Up       NO    1
+  B    HP J8706A 24p SFP zl Module            SG117BD09T     Up       NO    1
+  C    HP J8706A 24p SFP zl Module            SG117BD021     Up       NO    1
+  D    HP J8702A 24p Gig-T zl Module          SG129AT04P     Up       NO    1
+  E    HP J9154A Services zl Module           SG129GG01S     Up       NO    1
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show lacp
+────────────────────────────────────────────────────────────
+show lacpE
+                                    LACP
+
+no LACP ports found.
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show lldp i r
+────────────────────────────────────────────────────────────
+show lldp i rE
+ LLDP Remote Devices Information
+
+  LocalPort | ChassisId                 PortId PortDescr SysName
+  --------- + ------------------------- ------ --------- ----------------------
+  D24       | e8 e7 32 de cf 18         1024
+  E1        | SG129GG01S                eth0
+  E1        | 3c d9 2b ae a7 5c         3c ... Intern... ILANZ_LAB_CORE-E1-S...
+  E2        | SG129GG01S                eth1
+  E2        | 3c d9 2b ae a7 5c         3c ... LAN port  ILANZ_LAB_CORE-E1-S...
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show lldp info remote-device detail
+────────────────────────────────────────────────────────────
+show lldp info remote-device detailEModule not present for port or invalid port: detail
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show trunks
+────────────────────────────────────────────────────────────
+show trunksE
+ Load Balancing Method:  L3-based (default)
+
+  Port | Name                             Type       | Group  Type
+  ---- + -------------------------------- ---------- + ------ --------
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show stacking
+────────────────────────────────────────────────────────────
+show stackingEInvalid input: stacking
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show stacking detail
+────────────────────────────────────────────────────────────
+show stacking detailEInvalid input: stacking
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show stacking stack-ports
+────────────────────────────────────────────────────────────
+show stacking stack-portsEInvalid input: stacking
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interfaces brief
+────────────────────────────────────────────────────────────
+show interfaces briefE
+ Status and Counters - Port Status
+
+                    | Intrusion                           MDI  Flow Bcast
+  Port   Type       | Alert     Enabled Status Mode       Mode Ctrl Limit
+  ------ ---------- + --------- ------- ------ ---------- ---- ---- -----
+  A1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A2     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A3     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A4     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A5     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A6     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A7     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A8     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A9     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A10    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A11    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A12    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A13    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A14    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A15    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A16    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A17    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A19    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A20    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A21    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A22               | No        Yes     Down   .               off  0
+  A23               | No        Yes     Down   .               off  0
+  A24               | No        Yes     Down   .               off  0
+  B1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B2     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B3     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B4     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B5     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B6     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B7     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B8     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B9     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B10    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B11    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B12    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B13    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B14    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B15    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B16    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B17    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B19    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B20    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B21    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B22    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B23    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B24    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C2                | No        Yes     Down   .               off  0
+  C3                | No        Yes     Down   .               off  0
+  C4                | No        Yes     Down   .               off  0
+  C5                | No        Yes     Down   .               off  0
+  C6                | No        Yes     Down   .               off  0
+  C7                | No        Yes     Down   .               off  0
+  C8                | No        Yes     Down   .               off  0
+  C9                | No        Yes     Down   .               off  0
+  C10               | No        Yes     Down   .               off  0
+  C11               | No        Yes     Down   .               off  0
+  C12               | No        Yes     Down   .               off  0
+  C13               | No        Yes     Down   .               off  0
+  C14               | No        Yes     Down   .               off  0
+  C15               | No        Yes     Down   .               off  0
+  C16               | No        Yes     Down   .               off  0
+  C17               | No        Yes     Down   .               off  0
+  C18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C19               | No        Yes     Down   .               off  0
+  C20               | No        Yes     Down   .               off  0
+  C21               | No        Yes     Down   .               off  0
+  C22               | No        Yes     Down   .               off  0
+  C23    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C24    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  D1     100/1000T  | No        Yes     Up     1000FDx    MDI  off  0
+  D2     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D3     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D4     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D5     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D6     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D7     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D8     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D9     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D10    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D11    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D12    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D13    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D14    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D15    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D16    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D17    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D18    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D19    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D20    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D21    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D22    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D23    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D24    100/1000T  | No        Yes     Up     100FDx     MDIX off  0
+  E1     10GbE-CX4  | No        Yes     Up     10GigFD    NA   off  0
+  E2     10GbE-CX4  | No        Yes     Up     10GigFD    NA   off  0
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show power-over-ethernet brief
+────────────────────────────────────────────────────────────
+show power-over-ethernet briefE
+ Status and Counters - Port Power Status
+
+  System Power Status    : No redundancy
+  PoE Power Status       : No redundancy
+
+  Available: 273 W  Used: 0 W  Remaining: 273 W
+
+  Module D Power
+  Available: 273 W  Used: 0 W  Remaining: 273 W
+
+  PoE    | Power  Power    Alloc Alloc Actual Config   Detection   Power Pre-std
+  Port   | Enable Priority By    Power Power  Type     Status      Class Detect
+  ------ + ------ -------- ----- ----- ------ -------- ----------- ----- ------
+  D1     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D2     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D3     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D4     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D5     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D6     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D7     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D8     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D9     | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D10    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D11    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D12    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D13    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D14    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D15    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D16    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D17    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D18    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D19    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D20    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D21    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D22    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D23    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+  D24    | Yes    low      usage 17 W  0.0 W           Searching   0     off
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show power-over-ethernet
+────────────────────────────────────────────────────────────
+show power-over-ethernetE
+ Status and Counters - System Power Status
+
+  System Power Status    : No redundancy
+  PoE Power Status       : No redundancy
+
+ Chassis power-over-ethernet:
+
+  Total Available Power  :  273 W
+  Total Failover Power   :    0 W
+  Total Redundancy Power :    0 W
+  Total Used Power       :    0 W +/- 6W
+  Total Remaining Power  :  273 W
+
+ Internal Power
+
+        Main Power
+  PS    (Watts)       Status
+  ----- ------------- ---------------------
+  1     0             Connected - Faulted
+  2     0             Not Connected
+  3     0             Connected - Faulted
+  4     273           POE Connected
+
+ External Power
+        EPS1   /Not Connected.
+        EPS2   /Not Connected.
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interfaces status
+────────────────────────────────────────────────────────────
+show interfaces statusE  Port     Name       Status  Config-mode   Speed    Type       Tagged Untagged
+  -------- ---------- ------- ------------- -------- ---------- ------ --------
+  A1                  Down    Auto          1000FDx  1000SX     No     1
+  A2                  Down    Auto          1000FDx  1000SX     No     1
+  A3                  Down    Auto          1000FDx  1000SX     No     1
+  A4                  Down    Auto          1000FDx  1000SX     No     1
+  A5                  Down    Auto          1000FDx  1000SX     No     1
+  A6                  Down    Auto          1000FDx  1000SX     No     1
+  A7                  Down    Auto          1000FDx  1000SX     No     1
+  A8                  Down    Auto          1000FDx  1000SX     No     1
+  A9                  Down    Auto          1000FDx  1000SX     No     1
+  A10                 Down    Auto          1000FDx  1000SX     No     1
+  A11                 Down    Auto          1000FDx  1000SX     No     1
+  A12                 Down    Auto          1000FDx  1000SX     No     1
+  A13                 Down    Auto          1000FDx  1000SX     No     1
+  A14                 Down    Auto          1000FDx  1000SX     No     1
+  A15                 Down    Auto          1000FDx  1000SX     No     1
+  A16                 Down    Auto          1000FDx  1000SX     No     1
+  A17                 Down    Auto          1000FDx  1000SX     No     1
+  A18                 Down    Auto          1000FDx  1000SX     No     1
+  A19                 Down    Auto          1000FDx  1000SX     No     1
+  A20                 Down    Auto          1000FDx  1000SX     No     1
+  A21                 Down    Auto          1000FDx  1000SX     No     1
+  A22                 Down                                      No     1
+  A23                 Down                                      No     1
+  A24                 Down                                      No     1
+  B1                  Down    Auto          1000FDx  1000SX     No     1
+  B2                  Down    Auto          1000FDx  1000SX     No     1
+  B3                  Down    Auto          1000FDx  1000SX     No     1
+  B4                  Down    Auto          1000FDx  1000SX     No     1
+  B5                  Down    Auto          1000FDx  1000SX     No     1
+  B6                  Down    Auto          1000FDx  1000SX     No     1
+  B7                  Down    Auto          1000FDx  1000SX     No     1
+  B8                  Down    Auto          1000FDx  1000SX     No     1
+  B9                  Down    Auto          1000FDx  1000SX     No     1
+  B10                 Down    Auto          1000FDx  1000SX     No     1
+  B11                 Down    Auto          1000FDx  1000SX     No     1
+  B12                 Down    Auto          1000FDx  1000SX     No     1
+  B13                 Down    Auto          1000FDx  1000SX     No     1
+  B14                 Down    Auto          1000FDx  1000SX     No     1
+  B15                 Down    Auto          1000FDx  1000SX     No     1
+  B16                 Down    Auto          1000FDx  1000SX     No     1
+  B17                 Down    Auto          1000FDx  1000SX     No     1
+  B18                 Down    Auto          1000FDx  1000SX     No     1
+  B19                 Down    Auto          1000FDx  1000SX     No     1
+  B20                 Down    Auto          1000FDx  1000SX     No     1
+  B21                 Down    Auto          1000FDx  1000SX     No     1
+  B22                 Down    Auto          1000FDx  1000SX     No     1
+  B23                 Down    Auto          1000FDx  1000SX     No     1
+  B24                 Down    Auto          1000FDx  1000SX     No     1
+  C1                  Down    Auto          1000FDx  1000SX     No     1
+  C2                  Down                                      No     1
+  C3                  Down                                      No     1
+  C4                  Down                                      No     1
+  C5                  Down                                      No     1
+  C6                  Down                                      No     1
+  C7                  Down                                      No     1
+  C8                  Down                                      No     1
+  C9                  Down                                      No     1
+  C10                 Down                                      No     1
+  C11                 Down                                      No     1
+  C12                 Down                                      No     1
+  C13                 Down                                      No     1
+  C14                 Down                                      No     1
+  C15                 Down                                      No     1
+  C16                 Down                                      No     1
+  C17                 Down                                      No     1
+  C18                 Down    Auto          1000FDx  1000SX     No     1
+  C19                 Down                                      No     1
+  C20                 Down                                      No     1
+  C21                 Down                                      No     1
+  C22                 Down                                      No     1
+  C23                 Down    Auto          1000FDx  1000SX     No     1
+  C24                 Down    Auto          1000FDx  1000SX     No     1
+  D1       Connect... Up      Auto          1000FDx  100/1000T  multi  410
+  D2                  Down    Auto          1000FDx  100/1000T  No     410
+  D3                  Down    Auto          1000FDx  100/1000T  No     1
+  D4                  Down    Auto          1000FDx  100/1000T  No     1
+  D5                  Down    Auto          1000FDx  100/1000T  No     1
+  D6                  Down    Auto          1000FDx  100/1000T  No     1
+  D7                  Down    Auto          1000FDx  100/1000T  No     140
+  D8                  Down    Auto          1000FDx  100/1000T  No     140
+  D9                  Down    Auto          1000FDx  100/1000T  No     140
+  D10                 Down    Auto          1000FDx  100/1000T  No     1
+  D11                 Down    Auto          1000FDx  100/1000T  No     410
+  D12                 Down    Auto          1000FDx  100/1000T  No     430
+  D13                 Down    Auto          1000FDx  100/1000T  No     169
+  D14                 Down    Auto          1000FDx  100/1000T  No     1
+  D15                 Down    Auto          1000FDx  100/1000T  No     1
+  D16                 Down    Auto          1000FDx  100/1000T  No     1
+  D17                 Down    Auto          1000FDx  100/1000T  No     1
+  D18                 Down    Auto          1000FDx  100/1000T  No     1
+  D19                 Down    Auto          1000FDx  100/1000T  No     1
+  D20                 Down    Auto          1000FDx  100/1000T  No     1
+  D21                 Down    Auto          1000FDx  100/1000T  No     1
+  D22                 Down    Auto          1000FDx  100/1000T  No     1
+  D23                 Down    Auto          1000FDx  100/1000T  No     1
+  D24      Connect... Up      Auto          100FDx   100/1000T  multi  410
+  E1                  Up      Auto          10GigFD  10GbE-CX4  No     410
+  E2                  Up      Auto          10GigFD  10GbE-CX4  No     410
+ ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show vlans
+────────────────────────────────────────────────────────────
+show vlansE
+ Status and Counters - VLAN Information
+
+  Maximum VLANs to support : 256
+  Primary VLAN : DEFAULT_VLAN
+  Management VLAN :
+
+  VLAN ID Name                             | Status     Voice Jumbo
+  ------- -------------------------------- + ---------- ----- -----
+  1       DEFAULT_VLAN                     | Port-based No    No
+  110     ajman_saray_test                 | Port-based No    No
+  120     ajman_saray_gw                   | Port-based No    No
+  140     Ayla                             | Port-based No    No
+  169     KIDXB_WVOICE                     | Port-based No    No
+  410     MGMT                             | Port-based No    No
+  420     Staff                            | Port-based No    No
+  430     Guest                            | Port-based No    No
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interfaces transceiver
+────────────────────────────────────────────────────────────
+show interfaces transceiverE
+Transceiver Technical Information:
+
+                     Product      Serial             Part
+ Port    Type        Number       Number             Number
+ ------- ----------- ------------ ------------------ ----------
+ A1      1000SX      J4858C       MY125VM0NS         1990-3657
+ A2      1000SX      J4858C       MY125VM1X0         1990-3657
+ A3      1000SX      J4858C       MY124VM0TB         1990-3657
+ A4      1000SX      J4858C       MY125VM1X5         1990-3657
+ A5      1000SX      J4858C       MY123VM6XD         1990-3657
+ A6      1000SX      J4858C       MY123VM6Y6         1990-3657
+ A7      1000SX      J4858C       MY123VM6XG         1990-3657
+ A8      1000SX      J4858C       MY125VM1WZ         1990-3657
+ A9      1000SX      J4858C       MY123VM6Y0         1990-3657
+ A10     1000SX      J4858C       MY123VM0MK         1990-3657
+ A11     1000SX      J4858C       MY123VM0MY         1990-3657
+ A12     1000SX      J4858C       MY123VM0M4         1990-3657
+ A13     1000SX      J4858C       MY123VM0M1         1990-3657
+ A14     1000SX      J4858C       MY123VM0M9         1990-3657
+ A15     1000SX      J4858C       MY125VM1X7         1990-3657
+ A16     1000SX      J4858C       MY125VM1WL         1990-3657
+ A17     1000SX      J4858C       MY123VM0N2         1990-3657
+ A18     1000SX      J4858C       MY124VM0Q1         1990-3657
+ A19     1000SX      J4858C       MY123VM0M6         1990-3657
+ A20     1000SX      J4858C       MY125VM1WW         1990-3657
+ A21     1000SX      J4858C       MY123VM0MR         1990-3657
+ B1      1000SX      J4858C       MY123VM0MN         1990-3657
+ B2      1000SX      J4858C       MY123VM0MP         1990-3657
+ B3      1000SX      J4858C       MY124VM0TH         1990-3657
+ B4      1000SX      J4858C       MY124VM0T5         1990-3657
+ B5      1000SX      J4858C       MY123VM0MH         1990-3657
+ B6      1000SX      J4858C       MY123VM0LY         1990-3657
+ B7      1000SX      J4858C       MY125VM1WQ         1990-3657
+ B8      1000SX      J4858C       MY124VM0TD         1990-3657
+ B9      1000SX      J4858C       MY124VM0TN         1990-3657
+ B10     1000SX      J4858C       MY123VM0MF         1990-3657
+ B11     1000SX      J4858C       MY123VM0MG         1990-3657
+ B12     1000SX      J4858C       MY123VM0M8         1990-3657
+ B13     1000SX      J4858C       MY124VM0T6         1990-3657
+ B14     1000SX      J4858C       MY123VM6Y5         1990-3657
+ B15     1000SX      J4858C       MY125VM1WK         1990-3657
+ B16     1000SX      J4858C       MY123VM6XN         1990-3657
+ B17     1000SX      J4858C       MY123VM0MZ         1990-3657
+ B18     1000SX      J4858C       MY123VM0MM         1990-3657
+ B19     1000SX      J4858C       MY123VM0M0         1990-3657
+ B20     1000SX      J4858C       MY124VM0TL         1990-3657
+ B21     1000SX      J4858C       MY125VM0PC         1990-3657
+ B22     1000SX      J4858C       MY125VM0P9         1990-3657
+ B23     1000SX      J4858C       MY124VM0SS         1990-3657
+ B24     1000SX      J4858C       MY123VM0MS         1990-3657
+ C1      1000SX      J4858C       MY125VM1X3         1990-3657
+ C18     1000SX      J4858C       MY125VM1WR         1990-3657
+ C23     1000SX      J4858C       MY109VM4GY         1990-3657
+ C24     1000SX      J4858C       MY109VM18W         1990-3657
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show vsf detail
+────────────────────────────────────────────────────────────
+show vsf detailEInvalid input: vsf
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show uptime
+────────────────────────────────────────────────────────────
+show uptimeE0025:18:25:50.27
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show system power
+────────────────────────────────────────────────────────────
+show system powerEAmbiguous input: power
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show system fan
+────────────────────────────────────────────────────────────
+show system fanE
+Fan Information
+  Num  | State       | Failures
+-------+-------------+----------
+Fan-1  | Fan OK      |   0
+Fan-2  | Fan OK      |   0
+Fan-3  | Fan OK      |   0
+Fan-4  | Fan OK      |   0
+Fan-5  | Fan OK      |   0
+Fan-6  | Fan OK      |   0
+
+0 / 6 Fans in Failure State
+0 / 6 Fans have been in Failure State
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show system temperature
+────────────────────────────────────────────────────────────
+show system temperatureE
+ System Air Temperature
+  Temp    Current  Max   Min
+  Sensor  Temp     Temp  Temp  Threshold  OverTemp
+  ------- -------- ----- ----- ---------- ---------
+  Chassis 25C      29C   22C   42C        NO
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interface stat
+────────────────────────────────────────────────────────────
+show interface statE  Port     Name       Status  Config-mode   Speed    Type       Tagged Untagged
+  -------- ---------- ------- ------------- -------- ---------- ------ --------
+  A1                  Down    Auto          1000FDx  1000SX     No     1
+  A2                  Down    Auto          1000FDx  1000SX     No     1
+  A3                  Down    Auto          1000FDx  1000SX     No     1
+  A4                  Down    Auto          1000FDx  1000SX     No     1
+  A5                  Down    Auto          1000FDx  1000SX     No     1
+  A6                  Down    Auto          1000FDx  1000SX     No     1
+  A7                  Down    Auto          1000FDx  1000SX     No     1
+  A8                  Down    Auto          1000FDx  1000SX     No     1
+  A9                  Down    Auto          1000FDx  1000SX     No     1
+  A10                 Down    Auto          1000FDx  1000SX     No     1
+  A11                 Down    Auto          1000FDx  1000SX     No     1
+  A12                 Down    Auto          1000FDx  1000SX     No     1
+  A13                 Down    Auto          1000FDx  1000SX     No     1
+  A14                 Down    Auto          1000FDx  1000SX     No     1
+  A15                 Down    Auto          1000FDx  1000SX     No     1
+  A16                 Down    Auto          1000FDx  1000SX     No     1
+  A17                 Down    Auto          1000FDx  1000SX     No     1
+  A18                 Down    Auto          1000FDx  1000SX     No     1
+  A19                 Down    Auto          1000FDx  1000SX     No     1
+  A20                 Down    Auto          1000FDx  1000SX     No     1
+  A21                 Down    Auto          1000FDx  1000SX     No     1
+  A22                 Down                                      No     1
+  A23                 Down                                      No     1
+  A24                 Down                                      No     1
+  B1                  Down    Auto          1000FDx  1000SX     No     1
+  B2                  Down    Auto          1000FDx  1000SX     No     1
+  B3                  Down    Auto          1000FDx  1000SX     No     1
+  B4                  Down    Auto          1000FDx  1000SX     No     1
+  B5                  Down    Auto          1000FDx  1000SX     No     1
+  B6                  Down    Auto          1000FDx  1000SX     No     1
+  B7                  Down    Auto          1000FDx  1000SX     No     1
+  B8                  Down    Auto          1000FDx  1000SX     No     1
+  B9                  Down    Auto          1000FDx  1000SX     No     1
+  B10                 Down    Auto          1000FDx  1000SX     No     1
+  B11                 Down    Auto          1000FDx  1000SX     No     1
+  B12                 Down    Auto          1000FDx  1000SX     No     1
+  B13                 Down    Auto          1000FDx  1000SX     No     1
+  B14                 Down    Auto          1000FDx  1000SX     No     1
+  B15                 Down    Auto          1000FDx  1000SX     No     1
+  B16                 Down    Auto          1000FDx  1000SX     No     1
+  B17                 Down    Auto          1000FDx  1000SX     No     1
+  B18                 Down    Auto          1000FDx  1000SX     No     1
+  B19                 Down    Auto          1000FDx  1000SX     No     1
+  B20                 Down    Auto          1000FDx  1000SX     No     1
+  B21                 Down    Auto          1000FDx  1000SX     No     1
+  B22                 Down    Auto          1000FDx  1000SX     No     1
+  B23                 Down    Auto          1000FDx  1000SX     No     1
+  B24                 Down    Auto          1000FDx  1000SX     No     1
+  C1                  Down    Auto          1000FDx  1000SX     No     1
+  C2                  Down                                      No     1
+  C3                  Down                                      No     1
+  C4                  Down                                      No     1
+  C5                  Down                                      No     1
+  C6                  Down                                      No     1
+  C7                  Down                                      No     1
+  C8                  Down                                      No     1
+  C9                  Down                                      No     1
+  C10                 Down                                      No     1
+  C11                 Down                                      No     1
+  C12                 Down                                      No     1
+  C13                 Down                                      No     1
+  C14                 Down                                      No     1
+  C15                 Down                                      No     1
+  C16                 Down                                      No     1
+  C17                 Down                                      No     1
+  C18                 Down    Auto          1000FDx  1000SX     No     1
+  C19                 Down                                      No     1
+  C20                 Down                                      No     1
+  C21                 Down                                      No     1
+  C22                 Down                                      No     1
+  C23                 Down    Auto          1000FDx  1000SX     No     1
+  C24                 Down    Auto          1000FDx  1000SX     No     1
+  D1       Connect... Up      Auto          1000FDx  100/1000T  multi  410
+  D2                  Down    Auto          1000FDx  100/1000T  No     410
+  D3                  Down    Auto          1000FDx  100/1000T  No     1
+  D4                  Down    Auto          1000FDx  100/1000T  No     1
+  D5                  Down    Auto          1000FDx  100/1000T  No     1
+  D6                  Down    Auto          1000FDx  100/1000T  No     1
+  D7                  Down    Auto          1000FDx  100/1000T  No     140
+  D8                  Down    Auto          1000FDx  100/1000T  No     140
+  D9                  Down    Auto          1000FDx  100/1000T  No     140
+  D10                 Down    Auto          1000FDx  100/1000T  No     1
+  D11                 Down    Auto          1000FDx  100/1000T  No     410
+  D12                 Down    Auto          1000FDx  100/1000T  No     430
+  D13                 Down    Auto          1000FDx  100/1000T  No     169
+  D14                 Down    Auto          1000FDx  100/1000T  No     1
+  D15                 Down    Auto          1000FDx  100/1000T  No     1
+  D16                 Down    Auto          1000FDx  100/1000T  No     1
+  D17                 Down    Auto          1000FDx  100/1000T  No     1
+  D18                 Down    Auto          1000FDx  100/1000T  No     1
+  D19                 Down    Auto          1000FDx  100/1000T  No     1
+  D20                 Down    Auto          1000FDx  100/1000T  No     1
+  D21                 Down    Auto          1000FDx  100/1000T  No     1
+  D22                 Down    Auto          1000FDx  100/1000T  No     1
+  D23                 Down    Auto          1000FDx  100/1000T  No     1
+  D24      Connect... Up      Auto          100FDx   100/1000T  multi  410
+  E1                  Up      Auto          10GigFD  10GbE-CX4  No     410
+  E2                  Up      Auto          10GigFD  10GbE-CX4  No     410
+ ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interface brief
+────────────────────────────────────────────────────────────
+show interface briefE
+ Status and Counters - Port Status
+
+                    | Intrusion                           MDI  Flow Bcast
+  Port   Type       | Alert     Enabled Status Mode       Mode Ctrl Limit
+  ------ ---------- + --------- ------- ------ ---------- ---- ---- -----
+  A1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A2     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A3     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A4     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A5     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A6     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A7     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A8     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A9     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A10    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A11    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A12    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A13    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A14    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A15    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A16    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A17    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A19    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A20    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A21    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  A22               | No        Yes     Down   .               off  0
+  A23               | No        Yes     Down   .               off  0
+  A24               | No        Yes     Down   .               off  0
+  B1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B2     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B3     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B4     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B5     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B6     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B7     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B8     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B9     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B10    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B11    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B12    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B13    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B14    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B15    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B16    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B17    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B19    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B20    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B21    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B22    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B23    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  B24    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C1     1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C2                | No        Yes     Down   .               off  0
+  C3                | No        Yes     Down   .               off  0
+  C4                | No        Yes     Down   .               off  0
+  C5                | No        Yes     Down   .               off  0
+  C6                | No        Yes     Down   .               off  0
+  C7                | No        Yes     Down   .               off  0
+  C8                | No        Yes     Down   .               off  0
+  C9                | No        Yes     Down   .               off  0
+  C10               | No        Yes     Down   .               off  0
+  C11               | No        Yes     Down   .               off  0
+  C12               | No        Yes     Down   .               off  0
+  C13               | No        Yes     Down   .               off  0
+  C14               | No        Yes     Down   .               off  0
+  C15               | No        Yes     Down   .               off  0
+  C16               | No        Yes     Down   .               off  0
+  C17               | No        Yes     Down   .               off  0
+  C18    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C19               | No        Yes     Down   .               off  0
+  C20               | No        Yes     Down   .               off  0
+  C21               | No        Yes     Down   .               off  0
+  C22               | No        Yes     Down   .               off  0
+  C23    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  C24    1000SX     | No        Yes     Down   1000FDx    NA   off  0
+  D1     100/1000T  | No        Yes     Up     1000FDx    MDI  off  0
+  D2     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D3     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D4     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D5     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D6     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D7     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D8     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D9     100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D10    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D11    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D12    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D13    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D14    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D15    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D16    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D17    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D18    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D19    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D20    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D21    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D22    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D23    100/1000T  | No        Yes     Down   1000FDx    Auto off  0
+  D24    100/1000T  | No        Yes     Up     100FDx     MDIX off  0
+  E1     10GbE-CX4  | No        Yes     Up     10GigFD    NA   off  0
+  E2     10GbE-CX4  | No        Yes     Up     10GigFD    NA   off  0
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show interface transceiver
+────────────────────────────────────────────────────────────
+show interface transceiverE
+Transceiver Technical Information:
+
+                     Product      Serial             Part
+ Port    Type        Number       Number             Number
+ ------- ----------- ------------ ------------------ ----------
+ A1      1000SX      J4858C       MY125VM0NS         1990-3657
+ A2      1000SX      J4858C       MY125VM1X0         1990-3657
+ A3      1000SX      J4858C       MY124VM0TB         1990-3657
+ A4      1000SX      J4858C       MY125VM1X5         1990-3657
+ A5      1000SX      J4858C       MY123VM6XD         1990-3657
+ A6      1000SX      J4858C       MY123VM6Y6         1990-3657
+ A7      1000SX      J4858C       MY123VM6XG         1990-3657
+ A8      1000SX      J4858C       MY125VM1WZ         1990-3657
+ A9      1000SX      J4858C       MY123VM6Y0         1990-3657
+ A10     1000SX      J4858C       MY123VM0MK         1990-3657
+ A11     1000SX      J4858C       MY123VM0MY         1990-3657
+ A12     1000SX      J4858C       MY123VM0M4         1990-3657
+ A13     1000SX      J4858C       MY123VM0M1         1990-3657
+ A14     1000SX      J4858C       MY123VM0M9         1990-3657
+ A15     1000SX      J4858C       MY125VM1X7         1990-3657
+ A16     1000SX      J4858C       MY125VM1WL         1990-3657
+ A17     1000SX      J4858C       MY123VM0N2         1990-3657
+ A18     1000SX      J4858C       MY124VM0Q1         1990-3657
+ A19     1000SX      J4858C       MY123VM0M6         1990-3657
+ A20     1000SX      J4858C       MY125VM1WW         1990-3657
+ A21     1000SX      J4858C       MY123VM0MR         1990-3657
+ B1      1000SX      J4858C       MY123VM0MN         1990-3657
+ B2      1000SX      J4858C       MY123VM0MP         1990-3657
+ B3      1000SX      J4858C       MY124VM0TH         1990-3657
+ B4      1000SX      J4858C       MY124VM0T5         1990-3657
+ B5      1000SX      J4858C       MY123VM0MH         1990-3657
+ B6      1000SX      J4858C       MY123VM0LY         1990-3657
+ B7      1000SX      J4858C       MY125VM1WQ         1990-3657
+ B8      1000SX      J4858C       MY124VM0TD         1990-3657
+ B9      1000SX      J4858C       MY124VM0TN         1990-3657
+ B10     1000SX      J4858C       MY123VM0MF         1990-3657
+ B11     1000SX      J4858C       MY123VM0MG         1990-3657
+ B12     1000SX      J4858C       MY123VM0M8         1990-3657
+ B13     1000SX      J4858C       MY124VM0T6         1990-3657
+ B14     1000SX      J4858C       MY123VM6Y5         1990-3657
+ B15     1000SX      J4858C       MY125VM1WK         1990-3657
+ B16     1000SX      J4858C       MY123VM6XN         1990-3657
+ B17     1000SX      J4858C       MY123VM0MZ         1990-3657
+ B18     1000SX      J4858C       MY123VM0MM         1990-3657
+ B19     1000SX      J4858C       MY123VM0M0         1990-3657
+ B20     1000SX      J4858C       MY124VM0TL         1990-3657
+ B21     1000SX      J4858C       MY125VM0PC         1990-3657
+ B22     1000SX      J4858C       MY125VM0P9         1990-3657
+ B23     1000SX      J4858C       MY124VM0SS         1990-3657
+ B24     1000SX      J4858C       MY123VM0MS         1990-3657
+ C1      1000SX      J4858C       MY125VM1X3         1990-3657
+ C18     1000SX      J4858C       MY125VM1WR         1990-3657
+ C23     1000SX      J4858C       MY109VM4GY         1990-3657
+ C24     1000SX      J4858C       MY109VM18W         1990-3657
+
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show time
+────────────────────────────────────────────────────────────
+show timeEWed Mar 11 07:58:47 2026
+ILANZ_LAB_CORE#
+
+────────────────────────────────────────────────────────────
+# show spanning-tree
+────────────────────────────────────────────────────────────
+show spanning-treeE
+ Multiple Spanning Tree (MST) Information
+
+  STP Enabled   : Yes
+  Force Version : MSTP-operation
+  IST Mapped VLANs : 1-4094
+  Switch MAC Address : b439d6-faae00
+  Switch Priority    : 32768
+  Max Age  : 20
+  Max Hops : 20
+  Forward Delay : 15
+
+  Topology Change Count  : 22
+  Time Since Last Change : 12 days
+
+  CST Root MAC Address : 906cac-e63862
+  CST Root Priority    : 32768
+  CST Root Path Cost   : 20000
+  CST Root Port        : D1
+
+  IST Regional Root MAC Address : b439d6-faae00
+  IST Regional Root Priority    : 32768
+  IST Regional Root Path Cost   : 0
+  IST Remaining Hops            : 20
+
+  Root Guard Ports     :
+  Loop Guard Ports     :
+  TCN Guard Ports      :
+  BPDU Protected Ports :
+  BPDU Filtered Ports  :
+  PVST Protected Ports :
+  PVST Filtered Ports  :
+
+  Root Inconsistent Ports  :
+  Loop Inconsistent Ports  :
+
+                    |           Prio              | Designated    Hello
+  Port   Type       | Cost      rity State        | Bridge        Time PtP Edge
+  ------ ---------- + --------- ---- ------------ + ------------- ---- --- ----
+  A1     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A2     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A3     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A4     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A5     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A6     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A7     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A8     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A9     1000SX     | Auto      128  Disabled     |               2    Yes No
+  A10    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A11    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A12    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A13    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A14    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A15    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A16    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A17    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A18    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A19    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A20    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A21    1000SX     | Auto      128  Disabled     |               2    Yes No
+  A22               | Auto      128  Disabled     |               2    Yes No
+  A23               | Auto      128  Disabled     |               2    Yes No
+  A24               | Auto      128  Disabled     |               2    Yes No
+  B1     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B2     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B3     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B4     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B5     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B6     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B7     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B8     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B9     1000SX     | Auto      128  Disabled     |               2    Yes No
+  B10    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B11    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B12    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B13    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B14    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B15    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B16    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B17    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B18    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B19    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B20    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B21    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B22    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B23    1000SX     | Auto      128  Disabled     |               2    Yes No
+  B24    1000SX     | Auto      128  Disabled     |               2    Yes No
+  C1     1000SX     | Auto      128  Disabled     |               2    Yes No
+  C2                | Auto      128  Disabled     |               2    Yes No
+  C3                | Auto      128  Disabled     |               2    Yes No
+  C4                | Auto      128  Disabled     |               2    Yes No
+  C5                | Auto      128  Disabled     |               2    Yes No
+  C6                | Auto      128  Disabled     |               2    Yes No
+  C7                | Auto      128  Disabled     |               2    Yes No
+  C8                | Auto      128  Disabled     |               2    Yes No
+  C9                | Auto      128  Disabled     |               2    Yes No
+  C10               | Auto      128  Disabled     |               2    Yes No
+  C11               | Auto      128  Disabled     |               2    Yes No
+  C12               | Auto      128  Disabled     |               2    Yes No
+  C13               | Auto      128  Disabled     |               2    Yes No
+  C14               | Auto      128  Disabled     |               2    Yes No
+  C15               | Auto      128  Disabled     |               2    Yes No
+  C16               | Auto      128  Disabled     |               2    Yes No
+  C17               | Auto      128  Disabled     |               2    Yes No
+  C18    1000SX     | Auto      128  Disabled     |               2    Yes No
+  C19               | Auto      128  Disabled     |               2    Yes No
+  C20               | Auto      128  Disabled     |               2    Yes No
+  C21               | Auto      128  Disabled     |               2    Yes No
+  C22               | Auto      128  Disabled     |               2    Yes No
+  C23    1000SX     | Auto      128  Disabled     |               2    Yes No
+  C24    1000SX     | Auto      128  Disabled     |               2    Yes No
+  D1     100/1000T  | 20000     128  Forwarding   | 906cac-e63862 2    Yes No
+  D2     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D3     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D4     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D5     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D6     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D7     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D8     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D9     100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D10    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D11    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D12    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D13    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D14    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D15    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D16    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D17    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D18    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D19    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D20    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D21    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D22    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D23    100/1000T  | Auto      128  Disabled     |               2    Yes No
+  D24    100/1000T  | 200000    128  Forwarding   | b439d6-faae00 2    Yes No
+  E1     10GbE-CX4  | 2000      128  Forwarding   | b439d6-faae00 2    Yes Yes
+  E2     10GbE-CX4  | 2000      128  Forwarding   | b439d6-faae00 2    Yes Yes
+
+ILANZ_LAB_CORE#

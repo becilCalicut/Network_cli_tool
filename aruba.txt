@@ -1,0 +1,29 @@
+# Aruba AOS-CX / AOS-S commands
+terminal length 1000
+show system
+show running-config                               
+show system information
+show modules
+show lacp
+show lldp i r
+show lldp info remote-device detail
+show trunks
+show stacking 
+show stacking detail
+show stacking stack-ports
+show interfaces brief
+show power-over-ethernet brief
+show power-over-ethernet
+show interfaces status
+show vlans
+show interfaces transceiver
+show vsf detail
+show uptime
+show system power
+show system fan
+show system temperature
+show interface stat
+show interface brief
+show interface transceiver
+show time
+show spanning-tree
